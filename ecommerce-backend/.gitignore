@@ -1,0 +1,61 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables
+.env
+.env.*       # e.g. .env.development, .env.production
+
+# Build directories
+dist/
+build/
+tmp/
+temp/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Coverage directory (e.g. from nyc or jest)
+coverage/
+
+# PM2 process files
+.pids
+*.pm2
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js or similar (if mistakenly added to backend)
+.next/
+out/
