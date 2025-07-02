@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import SubscribeSection from './SubscribeSection';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -10,7 +13,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/products/${id}`);
         const data = await res.json();
         setProduct(data);
       } catch (err) {
@@ -36,6 +39,8 @@ const ProductDetail = () => {
   if (!product) return <div className="text-center mt-10">Loading...</div>;
 
   return (
+    <>
+    <Header/>
     <div className="max-w-6xl mx-auto px-4 py-8 grid gap-8 md:grid-cols-2">
       {/* Product Image */}
       <div>
@@ -88,6 +93,9 @@ const ProductDetail = () => {
         </ul>
       </div>
     </div>
+    <SubscribeSection/>
+    <Footer/>
+    </>
   );
 };
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('cart')) || [];
@@ -33,8 +35,9 @@ const Cart = () => {
       <h1 className="text-2xl font-bold mb-4">Your Cart</h1>
       <div className="space-y-4">
         {cart.map(item => (
+                  <Link to={`/product/${item._id}`}>
           <div key={item._id} className="flex items-center gap-4 border-b pb-2">
-            <img src={item.imageUrl} alt={item.name} className="w-20 h-20 object-cover rounded" />
+            <img src={`${baseUrl}/${item.images[0]}`} alt={item.name} className="w-20 h-20 object-cover rounded" />
             <div className="flex-1">
               <h2 className="font-semibold">{item.name}</h2>
               <p>₹{item.price}</p>
@@ -56,6 +59,7 @@ const Cart = () => {
               Remove
             </button>
           </div>
+           </Link>
         ))}
       </div>
 

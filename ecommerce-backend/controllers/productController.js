@@ -58,6 +58,41 @@ exports.createProduct = async (req, res) => {
 };
 
 
+exports.updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description, price } = req.body;
+    const files = req.files;
+
+
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    if (name) product.name = name;
+    if (description) product.description = description;
+    if (price) product.price = price;
+
+
+    if (files && files.length > 0) {
+      product.images = files.map(file => file.path);
+    }
+
+    await product.save();
+
+    return res.json({
+      message: 'Product updated successfully',
+      product
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+
+
 exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -66,18 +101,18 @@ exports.deleteProduct = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    if (product.images && product.images.length > 0) {
-      product.images.forEach(imagePath => {
-        const fullPath = path.join(__dirname, '..', imagePath);
-        if (fs.existsSync(fullPath)) {
-          fs.unlink(fullPath, err => {
-            if (err) {
-              console.error(`Failed to delete file: ${imagePath}`, err);
-            }
-          });
-        }
-      });
-    }
+    // if (product.images && product.images.length > 0) {
+    //   product.images.forEach(imagePath => {
+    //     const fullPath = path.join(__dirname, '..', imagePath);
+    //     if (fs.existsSync(fullPath)) {
+    //       fs.unlink(fullPath, err => {
+    //         if (err) {
+    //           console.error(`Failed to delete file: ${imagePath}`, err);
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
 
     await product.deleteOne();
 

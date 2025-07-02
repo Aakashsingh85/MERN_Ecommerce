@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Header from './Header';
+import SubscribeSection from './SubscribeSection';
+import Footer from './Footer';
 
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
@@ -7,7 +10,7 @@ const Register = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
@@ -22,6 +25,8 @@ const Register = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-100 to-green-300">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center text-green-700">Create an Account</h1>
@@ -65,6 +70,9 @@ const Register = () => {
         </p>
       </div>
     </div>
+    <SubscribeSection/>
+    <Footer/>
+    </>
   );
 };
 

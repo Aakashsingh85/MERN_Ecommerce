@@ -1,4 +1,5 @@
 import React from "react";
+import bannerImage from "../assets/images/t-shirts.jpg";
 
 const Banner = () => {
   return (
@@ -13,7 +14,7 @@ const Banner = () => {
             Explore the latest trends in fashion at unbeatable prices. Make every outfit count with ThinkAcademyProduct.
           </p>
           <a
-            href="#collection"
+            href="product"
             className="inline-block bg-yellow-600 text-white font-medium px-6 py-3 rounded-lg shadow hover:bg-yellow-700 transition"
           >
             Shop Now
@@ -23,9 +24,9 @@ const Banner = () => {
         {/* Image */}
         <div className="relative">
           <img
-            src="images/books/product5.jpg"
+            src={bannerImage}
             alt="Fashion Collection"
-            className="w-full rounded-lg shadow-lg"
+            className="w-120 rounded-lg shadow-lg h-80"
           />
         </div>
       </div>

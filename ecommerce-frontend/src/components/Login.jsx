@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Header from './Header';
+import SubscribeSection from './SubscribeSection';
+import Footer from './Footer';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -7,7 +10,7 @@ const Login = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/auth/login', {
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form)
@@ -22,6 +25,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-300">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">Login to Your Account</h1>
@@ -56,6 +61,9 @@ const Login = () => {
         </p>
       </div>
     </div>
+    <SubscribeSection/>
+    <Footer/>
+    </>
   );
 };
 
